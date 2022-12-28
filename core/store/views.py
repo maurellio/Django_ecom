@@ -1,11 +1,13 @@
-from django.shortcuts import render, get_object_or_404
-from .models import Product, Category
+from django.shortcuts import get_object_or_404, render
 
-def categories(request):
-    return {'categories' : Category.objects.all()}
+from .models import Category, Product
 
-def all_products(request):
-    products = Product.objects.all()
+
+#def categories(request):
+#    return {'categories' : Category.objects.all()}
+
+def product_all(request):
+    products = Product.objects.filter(is_active=True)
     return render(request, 'store/home.html', {'products' : products})
 
 def product_detail(request, slug):
